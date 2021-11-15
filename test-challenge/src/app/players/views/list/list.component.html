@@ -1,1 +1,68 @@
-<p>list works!</p>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-sm-12 mb-3" *ngIf="showCombo">
+        <a nz-dropdown [nzDropdownMenu]="menu">
+            Quieres filtrar a un solo equipo?
+            <i nz-icon nzType="down"></i>
+          </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu *ngFor="let item of allTeams" class="list-teams">
+                <li nz-menu-item (click)="filterPlayer(item)">{{item.TeamName}}</li>
+            </ul>
+        </nz-dropdown-menu>
+    </div>
+    <div class="col-md-12 col-sm-12 mb-3 text-right">
+        <button nz-button nzType="primary" [nzSize]="sizeBtn" nzShape="round" (click)="openModal()">
+            <i nz-icon nzType="plus"></i> Agregar jugador al equipo:  <b>{{selectedTeam.TeamName}}</b>
+        </button>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-4 mb-2 col-xl-3 col-sm-12" *ngFor="let item of players" (click)="openModal(item)">
+        <nz-card nzHoverable style="width:100%" [nzCover]="coverTemplate">
+            <nz-card-meta [nzTitle]="item.PlayerName!" [nzDescription]="'Equipo: ' + getTeamName(item)"></nz-card-meta>
+        </nz-card>
+        <ng-template #coverTemplate>
+            <img height="250px" [src]="item.Avatar" />
+        </ng-template>
+    </div>
+</div>
+<nz-modal [nzVisible]="isVisible" (nzOnCancel)="handleCancel()">
+    <div *nzModalTitle>
+        {{titleModal}}
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" class="needs-validation">
+        <div *nzModalContent>
+            <div class="modal-body">
+                <div class="form">
+                    <div class="form-group">
+                        <label for="Leage" class="mb-1">Equipo: </label>
+                        <input class="form-control" type="text" [value]="selectedTeam.TeamName" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="PlayerName" class="mb-1">Nombre de jugador: </label>
+                        <input class="form-control" formControlName="PlayerName" id="PlayerName" type="text" required>
+                        <label *ngIf="form.controls.PlayerName.errors?.required" class="label-danger">* es obligatorio</label>
+                    </div>
+                    <div class="form-group mb-0">
+                        <label for="validationCustom02" class="mb-1">Avatar:</label>
+                        <input class="form-control" id="validationCustom02" type="file" accept=".jpg,.png,.jpeg,.svg" #input (change)="fileSelected(input)" required>
+                        <label *ngIf="form.controls.Avatar.errors?.required" class="label-danger">* es obligatorio</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="row justify-content-center">
+                            <div class="col-md-5 mt-2 text-center">
+                                <img *ngIf="form.controls.Avatar.value" [src]="form.controls.Avatar.value" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *nzModalFooter>
+            <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+            <button nz-button nzType="primary" (click)="onSubmit()" [nzLoading]="isConfirmLoading">Salvar</button>
+            <button *ngIf="form.controls.id.value!=''" nz-button nzType="primary" nzDanger nz-popconfirm [nzPopconfirmTitle]="'Seguro que desean eliminar : '+ form.controls.PlayerName.value" (nzOnConfirm)="confirmDelete(form.value)" (nzOnCancel)="cancelCancel(form.value)"
+                nzPopconfirmPlacement="leftBottom" [nzLoading]="isConfirmLoading">Eliminar</button>
+        </div>
+    </form>
+</nz-modal>
