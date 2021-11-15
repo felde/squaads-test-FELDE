@@ -70,7 +70,7 @@ https://github.com/typicode/json-server
 - Que vayas comunicando por slack los avances y cualquier duda que
   tengas.
 
-##Changelog
+## Changelog
 
 [Initial Commit](https://github.com/felde/squaads-test-FELDE/commit/69f5f438f8baeb3a4ded5a4e293bff3d6586b11f)
 Se agrego la base del proyecto
