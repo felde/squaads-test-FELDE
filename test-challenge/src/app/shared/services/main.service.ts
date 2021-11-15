@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MainService {
+
   private urlBaseApi: string = environment.apiUrl;
   constructor(
     private http: HttpClient
@@ -17,8 +18,8 @@ export class MainService {
     return this.http.post<any>(`${this.urlBaseApi}${element}`, data);
   }
   /** R **/
-  public getAll<Type>(element: string): Observable<Type> {
-    return this.http.get<Type>(`${this.urlBaseApi}${element}`);
+  public getAll<Type>(element: string): Observable<Type[]> {
+    return this.http.get<Type[]>(`${this.urlBaseApi}${element}`);
   }
   public get<Type>(element: string, id: string): Observable<Type> {
     return this.http.get<Type>(`${this.urlBaseApi}${element}/${id}`);
@@ -30,5 +31,19 @@ export class MainService {
   /** D **/
   public delete(element: string, id: string): Observable<any> {
     return this.http.delete(`${this.urlBaseApi}${element}/${id}`);
+  }
+
+  public getImageBase64(input: any): Promise<string | null> {
+    return new Promise((resolve, reject) => {
+      if (input.files.length > 0) {
+        const reader = new FileReader();
+        reader.readAsDataURL(input.files[0]);
+        reader.onload = () => {
+          let base64: string = reader.result ? reader.result.toString() : ""
+          resolve(base64);
+        }
+      }
+      else reject();
+    });
   }
 }

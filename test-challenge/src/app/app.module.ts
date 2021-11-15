@@ -16,12 +16,18 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzPageHeaderModule } from 'ng-zorro-antd/page-header';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+
+
+import { HeaderComponent } from './shared/components/header/header.component';
 
 registerLocaleData(es);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +40,12 @@ registerLocaleData(es);
     NzLayoutModule,
     NzMenuModule,
     NzAlertModule,
-    NzNotificationModule
+    NzNotificationModule,
+    NzPageHeaderModule,
+    NzModalModule
+  ],
+  exports: [
+    HeaderComponent
   ],
   providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]

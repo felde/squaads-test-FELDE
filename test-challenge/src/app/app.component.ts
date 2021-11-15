@@ -15,7 +15,7 @@ export class AppComponent {
     private _service: MainService,
     private _notify: NzNotificationService
   ) {
-    this._service.getAll<Array<Menu>>("menu")
+    this._service.getAll<Menu>("menu")
       .subscribe(r => this.menus = r,
         err => {
           console.log(err);

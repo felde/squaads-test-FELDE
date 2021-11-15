@@ -1,1 +1,88 @@
-<p>list works!</p>
+<div class="row justify-content-center">
+    <nz-carousel nzEffect="flip" class="col-md-12" nzEnableSwipe="true" nzAutoPlay="false" (nzAfterChange)="loadTeams($event)">
+        <div nz-carousel-content *ngFor="let league of leagues">
+            <div class="row justify-content-center">
+                <div clas="col-md-3 col-xl-3 col-sm-12">
+                    <img [src]="league.Logo" class="img-league">
+                </div>
+                <div clas="col-md-3 col-xl-3 col-sm-12">
+                    <h4 class="title-legue">Liga: {{league.Name}}</h4>
+                </div>
+            </div>
+        </div>
+    </nz-carousel>
+    <div class="col-md-5 col-sm-12 mt-3 text-center">
+        <h3 class="team-title">Equipos de la liga</h3>
+    </div>
+    <div class="col-md-3 col-sm-12 mt-3 text-center">
+        <button nz-button nzType="primary" [nzSize]="sizeBtn" nzShape="round" (click)="openModal()">
+            <i nz-icon nzType="plus"></i> Agregar equipo
+        </button>
+    </div>
+    <cdk-virtual-scroll-viewport itemSize="10" class="demo-infinite-container col-md-10 col-sm-12 mt-3">
+        <nz-list nzItemLayout="horizontal" [nzLoading]="isLoadingTeams">
+            <nz-list-item *ngFor="let item of teams">
+                <nz-list-item-meta [nzAvatar]="item.TeamLogo" [nzDescription]="item.TeamName">
+                </nz-list-item-meta>
+                <ul nz-list-item-actions>
+                    <nz-list-item-action>
+                        <button nz-button nzType="primary" [nzSize]="sizeBtn" nzShape="round" (click)="openModal(item)" nzTooltipTitle="Editar equipo" nzTooltipPlacement="top" nz-tooltip>
+                            <i nz-icon nzType="edit"></i>
+                        </button>
+                    </nz-list-item-action>
+                    <nz-list-item-action>
+
+                        <button nz-popconfirm [nzPopconfirmTitle]="'Seguro que desean eliminar : '+ item.TeamName" (nzOnConfirm)="confirmDelete(item)" (nzOnCancel)="cancelCancel(item)" nzPopconfirmPlacement="leftBottom" nz-button nzType="primary" [nzSize]="sizeBtn" nzShape="round"
+                            nzTooltipTitle="Eliminar equipo" nzTooltipPlacement="top" nz-tooltip>
+                            <i nz-icon nzType="delete"></i>
+                        </button>
+                    </nz-list-item-action>
+                    <nz-list-item-action>
+                        <button nz-button nzType="primary" [nzSize]="sizeBtn" nzShape="round" [routerLink]="['/players',item.id]" nzTooltipTitle="Ver sus jugadores" nzTooltipPlacement="top" nz-tooltip>
+                            <i nz-icon nzType="team"></i>
+                        </button>
+                    </nz-list-item-action>
+                </ul>
+            </nz-list-item>
+            <nz-list-empty *ngIf="teams.length === 0"></nz-list-empty>
+        </nz-list>
+    </cdk-virtual-scroll-viewport>
+    <nz-modal [nzVisible]="isVisible" (nzOnCancel)="handleCancel()">
+        <div *nzModalTitle>
+            {{titleModal}}
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off" class="needs-validation">
+            <div *nzModalContent>
+                <div class="modal-body">
+                    <div class="form">
+                        <div class="form-group">
+                            <label for="Leage" class="mb-1">Liga: </label>
+                            <input class="form-control" type="text" [value]="selectedLeague.Name" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="TeamName" class="mb-1">Nombre de equipo: </label>
+                            <input class="form-control" formControlName="TeamName" id="TeamName" type="text" required>
+                            <label *ngIf="form.controls.TeamName.errors?.required" class="label-danger">* es obligatorio</label>
+                        </div>
+                        <div class="form-group mb-0">
+                            <label for="validationCustom02" class="mb-1">Logo:</label>
+                            <input class="form-control" id="validationCustom02" type="file" accept=".jpg,.png,.jpeg,.svg" #input (change)="fileSelected(input)" required>
+                            <label *ngIf="form.controls.TeamLogo.errors?.required" class="label-danger">* es obligatorio</label>
+                        </div>
+                        <div class="form-group">
+                            <div class="row justify-content-center">
+                                <div class="col-md-5 mt-2 text-center">
+                                    <img *ngIf="form.controls.TeamLogo.value" [src]="form.controls.TeamLogo.value" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *nzModalFooter>
+                <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+                <button nz-button nzType="primary" (click)="onSubmit()" [nzLoading]="isConfirmLoading">Salvar</button>
+            </div>
+        </form>
+    </nz-modal>
+</div>

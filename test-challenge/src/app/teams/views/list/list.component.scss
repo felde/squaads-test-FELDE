@@ -1,0 +1,43 @@
+nz-radio-group {
+    margin-bottom: 8px;
+}
+
+[nz-carousel-content] {
+    text-align: center;
+    height: auto;
+    line-height: 160px;
+    background: rgb(150, 230, 233);
+    color: #fff;
+    overflow: hidden;
+    .img-league {
+        width: 200px;
+        height: auto;
+        position: relative;
+        margin: 0 auto;
+    }
+    .title-legue {
+        font-size: 2em;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-style: italic;
+        position: relative;
+        top: 50%;
+        font-weight: bold;
+        //transform: translateY(-50%);
+    }
+}
+
+.demo-infinite-container {
+    height: 150px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+}
+
+.team-title {
+    color: #c1c1c1;
+}
+
+h3 {
+    color: #fff;
+    margin-bottom: 0;
+    user-select: none;
+}
