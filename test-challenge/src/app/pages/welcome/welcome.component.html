@@ -1,0 +1,11 @@
+<nz-row [nzGutter]="8">
+    <nz-col [nzSpan]="8">
+        <nz-statistic [nzValue]="(totalLeagues | number)!" [nzTitle]="'Ligas existentes'"></nz-statistic>
+    </nz-col>
+    <nz-col [nzSpan]="8">
+        <nz-statistic [nzValue]="(totalTeams | number: '1.0-2')!" [nzTitle]="'Total de equipos'"></nz-statistic>
+    </nz-col>
+    <nz-col [nzSpan]="8">
+        <nz-statistic [nzValue]="(totalPlayers | number: '1.0-2')!" [nzTitle]="'Total de jugadores'"></nz-statistic>
+    </nz-col>
+</nz-row>
