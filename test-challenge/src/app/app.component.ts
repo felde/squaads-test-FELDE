@@ -9,7 +9,23 @@ import { MainService } from './shared/services/main.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  isCollapsed = false;
+
+  /**
+   * #### Description
+   * Bandera para mostrar de primera vez el menu abierto o cerrado
+   * #### Version
+   * since: V1.0.0
+   * Determines whether collapsed is
+   */
+  isCollapsed = true;
+
+  /**
+   * #### Description
+   * Listado de items de menu para mostrar en el front
+   * #### Version
+   * since: V1.0.0
+   * Menus  of app component
+   */
   public menus: Menu[] = [];
   constructor(
     private _service: MainService,

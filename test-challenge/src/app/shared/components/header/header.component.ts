@@ -8,14 +8,37 @@ import { map } from 'rxjs/internal/operators';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  /**
+   * #### Description
+   * Etiqueta dinamica para el titulo de sección
+   * #### Version
+   * since: V1.0.0
+   * Title  of header component
+   */
   public title: string = "";
+
+  /**
+   * #### Description
+   * Etiqueta dinamica para mostrar el subsección en la que se entró
+   * #### Version
+   * since: V1.0.0
+   * Sub title of header component
+   */
   public subTitle: string = "";
+
+  /**
+   * #### Description
+   * Url a redireccionar cuando se sale de la seccion donde se encuentre
+   * #### Version
+   * since: V1.0.0
+   * Return page of header component
+   */
   public returnPage: string = "";
   constructor(
     private activatedRoute: ActivatedRoute,
     private _router: Router
   ) {
-
     this._router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .pipe(map(() => this.activatedRoute))
@@ -37,6 +60,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  /**
+   * #### Description
+   * Evento que redireccion al usuario a una pagina en especifico
+   * #### Version
+   * since: V1.0.0
+   * Go back
+   */
   public goBack(): void {
     this._router.navigate([this.returnPage])
   }

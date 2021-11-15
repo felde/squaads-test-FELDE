@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-md-6 col-sm-12 mb-3" *ngIf="showCombo">
+    <div class="col-md-4 col-sm-12 mb-3" *ngIf="showCombo">
         <a nz-dropdown [nzDropdownMenu]="menu">
             Quieres filtrar a un solo equipo?
             <i nz-icon nzType="down"></i>
@@ -10,9 +10,12 @@
             </ul>
         </nz-dropdown-menu>
     </div>
-    <div class="col-md-12 col-sm-12 mb-3 text-right">
+    <div class="col-md-4 col-sm-12 mb-3 text-right">
+        <input nz-input placeholder="Buscar un jugador" (keypress)="onKeypressEvent($event)" (keydown)="onKeypressEvent($event)" />
+    </div>
+    <div class="col-md-4 col-sm-12 mb-3 text-right">
         <button nz-button nzType="primary" [nzSize]="sizeBtn" nzShape="round" (click)="openModal()">
-            <i nz-icon nzType="plus"></i> Agregar jugador al equipo:  <b>{{selectedTeam.TeamName}}</b>
+            <i nz-icon nzType="plus"></i> Agregar jugador:  <b>{{selectedTeam.TeamName}}</b>
         </button>
     </div>
 </div>

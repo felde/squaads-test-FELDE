@@ -22,15 +22,80 @@ import { MainService } from 'src/app/shared/services/main.service';
   ]
 })
 export class ListComponent implements OnInit {
+
+  /**
+   * #### Description
+   * Espeficia el tipo de boton a redenrizar
+   * #### Version
+   * since: V1.0.0
+   * Size btn of list component
+   */
   public sizeBtn: NzButtonSize = "large";
+
+  /**
+   * #### Description
+   * Listado de ligas
+   * #### Version
+   * since: V1.0.0
+   * Leagues  of list component
+   */
   public leagues: League[] = [];
+
+  /**
+   * #### Description
+   * Objecto que almacena localmente que liga se esta manipulando
+   * #### Version
+   * since: V1.0.0
+   * Selected league of list component
+   */
   public selectedLeague: League = {};
+
+  /**
+   * #### Description
+   * Se almanacena localmente que item del carrucel esta activo
+   * #### Version
+   * since: V1.0.0
+   * Selected tab of list component
+   */
   public selectedTab: number = 0;
+
+  /**
+   * #### Description
+   * Listado de quipos pertenecientes a la liga activa en elc carrusel
+   * #### Version
+   * since: V1.0.0
+   * Teams  of list component
+   */
   public teams: Team[] = [];
+
+  /**
+   * #### Description
+   * Bandera utilizadas para mostrar el modal
+   * #### Version
+   * since: V1.0.0
+   * Determines whether loading teams is
+   */
   public isLoadingTeams: boolean = false;
   public isVisible = false;
   public isConfirmLoading = false;
+
+
+  /**
+   * #### Description
+   * Título a mostrar en el modal
+   * #### Version
+   * since: V1.0.0
+   * Title modal of list component
+   */
   public titleModal: string = "";
+
+  /**
+   * #### Description
+   * Formulario para manipular los objetos de tipo team
+   * #### Version
+   * since: V1.0.0
+   * Form  of list component
+   */
   public form!: FormGroup;
 
   constructor(
@@ -54,6 +119,15 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  /**
+   * #### Description
+   * obtiene los equipos de la liga
+   * #### Version
+   * since: V1.0.0
+   * Loads teams
+   * @param event 
+   */
   public loadTeams(event: number): void {
     this.isLoadingTeams = true;
     this.selectedLeague = this.leagues[event];
@@ -75,10 +149,18 @@ export class ListComponent implements OnInit {
         }
       )
   }
+
+  /**
+   * #### Description
+   * Habilita o deshabilita el modal del formulario
+   * #### Version
+   * since: V1.0.0
+   * Opens modal
+   * @param [item] 
+   */
   public openModal(item?: Team): void {
     console.log(item);
     this.titleModal = item ? "Edición de equipo: " + item?.TeamName : "Nuevo equipo";
-    // if (item) {
     let team: Team =
     {
       id: item ? item.id : "",
@@ -87,19 +169,29 @@ export class ListComponent implements OnInit {
       LeagueID: this.selectedLeague.id ? this.selectedLeague.id : ""
     };
     this.form.patchValue(team);
-    // }
     this.isVisible = true;
   }
+
+  /**
+   * #### Description
+   * Deshabilita el modal
+   * #### Version
+   * since: V1.0.0
+   * Handles cancel
+   */
   public handleCancel(): void {
     this.isVisible = false;
   }
-  public handleOk(): void {
-    this.isConfirmLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isConfirmLoading = false;
-    }, 3000);
-  }
+
+
+  /**
+   * #### Description
+   * Evento lanzado cuando se selecciona un archivo en el fileinput
+   * #### Version
+   * since: V1.0.0
+   * Files selected
+   * @param ev 
+   */
   public fileSelected(ev: any): void {
     console.log(ev.files);
     this._main.getImageBase64(ev).then(r => {
@@ -108,6 +200,14 @@ export class ListComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * #### Description
+   * Método submit para gradar los datos de un equipo
+   * #### Version
+   * since: V1.0.0
+   * Determines whether submit on
+   */
   public onSubmit(): void {
     this.isConfirmLoading = true;
     if (this.form.valid) {
@@ -144,8 +244,16 @@ export class ListComponent implements OnInit {
       console.log(this.form.controls["LeagueID"].errors);
     }
   }
+
+  /**
+   * #### Description
+   * LAza un pop de confirmación de eliminación de equipo
+   * #### Version
+   * since: V1.0.0
+   * Confirms delete
+   * @param item 
+   */
   public confirmDelete(item: Team): void {
-    // console.log(item);
     this._main.delete("teams", item.id)
       .subscribe(
         r => this._notify.create("success",
@@ -163,6 +271,15 @@ export class ListComponent implements OnInit {
         }
       )
   }
+
+  /**
+   * #### Description
+   * Lanza un mensaje de cancelación de eliminación de quipo
+   * #### Version
+   * since: V1.0.0
+   * Cancels cancel
+   * @param item 
+   */
   public cancelCancel(item: Team): void {
     this._notify.create(
       "warning",

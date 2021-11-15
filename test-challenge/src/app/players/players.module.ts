@@ -11,6 +11,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     NzToolTipModule,
     NzPopconfirmModule,
     ScrollingModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzInputModule
   ]
 })
 export class PlayersModule { }
