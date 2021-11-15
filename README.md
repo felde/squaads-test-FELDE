@@ -96,7 +96,10 @@ Se logra hacer el CRUD de equipos, así mismo como la visualización por Ligas
 
 Se logra hacer el CRUD de equipos, así mismo como la visualización por Ligas
 
-[Mini dashboard]()
+[Mini dashboard](https://github.com/felde/squaads-test-FELDE/commit/f2a89931e61f8a6a3cb5176c2aad00117fdc2dfd)
 
 Se agrega mini dashboard con lso conteos ligas, equipos y jugadores
 
+[Documentación de código]()
+
+Se agrega mini dashboard con lso conteos ligas, equipos y jugadores
