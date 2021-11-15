@@ -69,3 +69,17 @@ https://github.com/typicode/json-server
 - Repositorio de github donde vayas comiteando poco a poco el proyecto.
 - Que vayas comunicando por slack los avances y cualquier duda que
   tengas.
+
+##Changelog
+
+[Initial Commit](https://github.com/felde/squaads-test-FELDE/commit/69f5f438f8baeb3a4ded5a4e293bff3d6586b11f)
+Se agrego la base del proyecto
+
+[Json Server Data](https://github.com/felde/squaads-test-FELDE/commit/63f533c2d0fdd3f5080bec0ca7133e3bda16a495)
+Se agrego la data para que funcione el json server
+
+[First doc](https://github.com/felde/squaads-test-FELDE/commit/fb159df1d5475affd266e5524a245076a5d8ac69)
+Se agrega la primera documentación en README file
+
+[Teams Module completly](https://github.com/felde/squaads-test-FELDE/commit/1f051d054fe491532a7e177d19f154a1d846ad92)
+Se logra hacer el CRUD de equipos, así mismo como la visualización por Ligas
