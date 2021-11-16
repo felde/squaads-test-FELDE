@@ -6,7 +6,7 @@
           </a>
         <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu *ngFor="let item of allTeams" class="list-teams">
-                <li nz-menu-item (click)="filterPlayer(item)">{{item.TeamName}}</li>
+                <li nz-menu-item (click)="filterPlayer(item)">{{item?.TeamName}}</li>
             </ul>
         </nz-dropdown-menu>
     </div>
@@ -15,7 +15,7 @@
     </div>
     <div class="col-md-4 col-sm-12 mb-3 text-right">
         <button nz-button nzType="primary" [nzSize]="sizeBtn" nzShape="round" (click)="openModal()">
-            <i nz-icon nzType="plus"></i> Agregar jugador:  <b>{{selectedTeam.TeamName}}</b>
+            <i nz-icon nzType="plus"></i> Agregar jugador:  <b>{{selectedTeam?.TeamName}}</b>
         </button>
     </div>
 </div>

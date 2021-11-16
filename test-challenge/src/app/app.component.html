@@ -6,8 +6,8 @@
                 <h1>Squaads Challenge</h1>
             </a>
         </div>
-        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-            <li *ngFor="let item of menus" nz-submenu nzOpen [nzTitle]="item.title" [nzIcon]="item.icon">
+        <ul class="menu-list" nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li class="manu-list-pricipal-item" *ngFor="let item of menus" nz-submenu nzOpen [nzTitle]="item.title" [nzIcon]="item.icon">
                 <ul *ngFor="let sm of item.items">
                     <li nz-menu-item nzMatchRouter>
                         <a [routerLink]="sm.url">{{sm.text}}</a>
